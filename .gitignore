@@ -209,3 +209,7 @@ __marimo__/
 
 # Data
 *.csv
+
+# Others
+*.idea
+*.xml
