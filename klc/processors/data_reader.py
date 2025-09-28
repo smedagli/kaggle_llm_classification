@@ -1,29 +1,8 @@
 """A module to read data for KLC project."""
-import argparse
 import re
 
 import pandas as pd
 import toolz
-
-
-def parse_args():
-    """Parse command line arguments."""
-    parser = argparse.ArgumentParser(description="Data Reader")
-    parser.add_argument(
-        "-i",
-        "--input_path",
-        type=str,
-        default="data/train.csv",
-        help="Path to the CSV file to read data from",
-    )
-    parser.add_argument(
-        "-o",
-        "--output_path",
-        type=str,
-        # required=True,
-        help="Path to save the processed data",
-    )
-    return parser.parse_args()
 
 
 class DataReader:
@@ -82,12 +61,3 @@ class DataReader:
             lambda x: x[1:-1],
         )
         return output
-
-
-if __name__ == "__main__":
-    args = parse_args()
-    data = DataReader.read_data(args.input_path)
-    transformed_data = DataReader.transform_data(data)
-    # transformed_data.to_csv(args.output_path, index=False)
-    print(transformed_data.head())
-    # print(f"Processed data saved to {args.output_path}")
