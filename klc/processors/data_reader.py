@@ -13,14 +13,14 @@ def parse_args():
         "-i",
         "--input_path",
         type=str,
-        required=True,
+        default="data/train.csv",
         help="Path to the CSV file to read data from",
     )
     parser.add_argument(
         "-o",
         "--output_path",
         type=str,
-        required=True,
+        # required=True,
         help="Path to save the processed data",
     )
     return parser.parse_args()
@@ -50,7 +50,7 @@ class DataReader:
         """Transform data."""
         output = data_.assign(
             **{
-                "prompr": lambda x: x["prompt"].apply(DataReader.process_text),
+                "prompt": lambda x: x["prompt"].apply(DataReader.process_text),
                 "response_a": lambda x: x["response_a"].apply(DataReader.process_text),
                 "response_b": lambda x: x["response_b"].apply(DataReader.process_text),
                 "responses": lambda x: x["response_a"] + " | " + x["response_b"],
